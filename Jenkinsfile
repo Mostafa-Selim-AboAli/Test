@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'dotnet restore' 
-                sh 'dotnet build --no-restore' 
+                bat 'dotnet restore' 
+                bat 'dotnet build --no-restore' 
             }
         }
         stage('Test') { 
             steps {
-                sh 'dotnet test --no-build --no-restore --collect "XPlat Code Coverage"'
+                bat 'dotnet test --no-build --no-restore --collect "XPlat Code Coverage"'
             }
             post {
                 always {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deliver') { 
             steps {
-                sh 'dotnet publish SimpleWebApi --no-restore -o published' 
+                bat 'dotnet publish SimpleWebApi --no-restore -o published' 
             }
             post {
                 success {
